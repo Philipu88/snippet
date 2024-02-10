@@ -9,19 +9,19 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-height: 100%;
+            height: 100%;
         }
 
         .app-container {
-width: 100%;
-height: 100%;
-margin: 0;
-padding: 0;
-    background-color: black;
-    color: white;
-    font-family: Arial, sans-serif;
-    overflow: hidden;
-}
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
 
         header {
             text-align: center;
@@ -104,30 +104,31 @@ padding: 0;
             outline: none;
         }
 
-.button-container button {
-    flex: 1;
-    margin-right: 5px;
-    margin-left: 5px;
-    width: 200%; /* Esta propriedade define a largura dos botões */
-    padding: 5px;
-    font-size: 16px;
-    background-color: black;
-    color: #fff;
-    border: 2px solid white;
-    border-radius: 8px;
-    cursor: pointer;
-    outline: none;
+        .button-container button {
+            flex: 1;
+            margin-right: 5px;
+            margin-left: 5px;
+            width: 200%; /* Esta propriedade define a largura dos botões */
+            padding: 5px;
+            font-size: 16px;
+            background-color: black;
+            color: #fff;
+            border: 2px solid white;
+            border-radius: 8px;
+            cursor: pointer;
+            outline: none;
             border-radius: 15px;
-    transition: background-color 0.3s;
-}
+            transition: background-color 0.3s;
+        }
 
-.button-container button:hover {
-    background-color: #357ae8; /* Cor alterada ao passar o mouse */
-}
+        .button-container button:hover {
+            background-color: #357ae8; /* Cor alterada ao passar o mouse */
+        }
 
-.button-container button:active {
-    background-color: #2458a7; /* Cor alterada ao clicar */
-}
+        .button-container button:active {
+            background-color: #2458a7; /* Cor alterada ao clicar */
+        }
+
         .button-container {
             display: flex;
             justify-content: space-between;
@@ -197,16 +198,16 @@ padding: 0;
                 <img src="youtube.png" alt="YouTube Icon">
             </div>
             <div class="tab" onclick="activateTab('facebook')">
-<img src="facebook.png" alt="Facebook Icon">
+                <img src="facebook.png" alt="Facebook Icon">
             </div>
             <div class="tab" onclick="activateTab('instagram')">
-<img src="instagram.png" alt="Instagram Icon">
+                <img src="instagram.png" alt="Instagram Icon">
             </div>
             <div class="tab" onclick="activateTab('tiktok')">
                 <img src="tiktok.png" alt="Tiktok Icon">
             </div>
             <div class="tab" onclick="activateTab('kwai')">
-                 <img src="kwai.png" alt="Kwai Icon">
+                <img src="kwai.png" alt="Kwai Icon">
             </div>
             <div class="tab" onclick="activateTab('twitter')">
                 <img src="twitter.png" alt="Twitter Icon">
@@ -328,15 +329,20 @@ padding: 0;
 
         // Verifica se o URL do vídeo do YouTube é válido
         if (isValidYouTubeUrl(videoUrl)) {
-            // Cria um link temporário para o vídeo
-            const tempLink = document.createElement('a');
-            tempLink.href = videoUrl;
-            tempLink.target = '_blank';
-
-            // Adiciona o link temporário à página e simula um clique para iniciar o download
-            document.body.appendChild(tempLink);
-            tempLink.click();
-            document.body.removeChild(tempLink);
+            // Chama o youtube-dl para baixar o vídeo
+            const command = `youtube-dl ${videoUrl}`;
+            const childProcess = require('child_process');
+            childProcess.exec(command, (error, stdout, stderr) => {
+                if (error) {
+                    console.error(`Erro ao baixar o vídeo: ${error.message}`);
+                    return;
+                }
+                if (stderr) {
+                    console.error(`Erro de saída padrão: ${stderr}`);
+                    return;
+                }
+                console.log(`Vídeo baixado com sucesso: ${stdout}`);
+            });
         } else {
             // Se o URL do vídeo do YouTube não for válido, exibe uma mensagem de erro
             alert('Por favor, insira um link válido do YouTube.');
