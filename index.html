@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+height: 100%;
+        }
+
+        .app-container {
+width: 100%;
+height: 100%;
+margin: 0;
+padding: 0;
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+        header {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+        }
+
+        header h1 {
+            cursor: pointer;
+            margin: 0;
+            letter-spacing: 20px;
+            margin-right: -18px;
+            margin-left: 2px;
+            font-size: 54px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            background-color: #333;
+            border-bottom: 1px solid #444;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            border-right: 1px solid #444;
+            transition: background-color 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .tab:last-child {
+            border-right: none;
+        }
+
+        .tab:hover {
+            background-color: #555;
+        }
+
+        .tab img {
+            max-width: 80px;
+            max-height: 80px;
+            margin-bottom: 0px;
+            object-fit: contain;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #444;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .advertisement {
+            background-color: #333;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .input-container input {
+            width: calc(100% - 20px);
+            margin-bottom: 10px;
+            padding: 15px;
+            font-size: 16px;
+            border: 3px solid black;
+            border-radius: 15px;
+            outline: none;
+        }
+
+.button-container button {
+    flex: 1;
+    margin-right: 5px;
+    margin-left: 5px;
+    width: 200%; /* Esta propriedade define a largura dos botões */
+    padding: 5px;
+    font-size: 16px;
+    background-color: black;
+    color: #fff;
+    border: 2px solid white;
+    border-radius: 8px;
+    cursor: pointer;
+    outline: none;
+            border-radius: 15px;
+    transition: background-color 0.3s;
+}
+
+.button-container button:hover {
+    background-color: #357ae8; /* Cor alterada ao passar o mouse */
+}
+
+.button-container button:active {
+    background-color: #2458a7; /* Cor alterada ao clicar */
+}
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .button-container button {
+            flex: 1;
+            margin-right: 5px;
+            margin-left: 5px;
+        }
+
+        .thumbnail,
+        .video-title {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .home-content {
+            text-align: center;
+            padding: 20px;
+        }
+
+        #youtube-content {
+            background-color: #c4302b;
+        }
+
+        #facebook-content {
+            background-color: #3b5998;
+        }
+
+        #instagram-content {
+            background-color: #3f729b;
+        }
+
+        #tiktok-content {
+            background-color: #252520;
+        }
+
+        #kwai-content {
+            background-color: #ffa500;
+        }
+
+        #twitter-content {
+            background-color: #00acee;
+        }
+
+    </style>
+    <title>S N I P P E T</title>
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1 onclick="goToHome()">S        N        I        P        P        E        T</h1>
+        </header>
+        <section class="content home-content">
+            <h2>Baixe, assista e aproveite! Seus vídeos favoritos, agora na palma da sua mão. #SnippetApp</h2>
+            <!-- Adicione qualquer conteúdo adicional que você queira exibir na tela inicial -->
+        </section>
+        <nav>
+            <div class="tab" onclick="activateTab('youtube')">
+                <img src="C:\Users\Felipe\Downloads\Snippet\youtube.png" alt="YouTube Icon">
+            </div>
+            <div class="tab" onclick="activateTab('facebook')">
+                <img src="C:\Users\Felipe\Downloads\Snippet\facebook.png" alt="Facebook Icon">
+            </div>
+            <div class="tab" onclick="activateTab('instagram')">
+                <img src="C:\Users\Felipe\Downloads\Snippet\instagram.png" alt="Instagram Icon">
+            </div>
+            <div class="tab" onclick="activateTab('tiktok')">
+                <img src="C:\Users\Felipe\Downloads\Snippet\tiktok.png" alt="TikTok Icon">
+            </div>
+            <div class="tab" onclick="activateTab('kwai')">
+                <img src="C:\Users\Felipe\Downloads\Snippet\kwai.png" alt="Kwai Icon">
+            </div>
+            <div class="tab" onclick="activateTab('twitter')">
+                <img src="C:\Users\Felipe\Downloads\Snippet\twitter.png" alt="Twitter Icon">
+            </div>
+        </nav>
+        <section class="content">
+            <!-- Content for YouTube -->
+            <div id="youtube-content" class="tab-content">
+                <div class="input-container">
+                    <input type="text" placeholder="Cole o link aqui" id="youtube-input" onclick="selectInputText(this)">
+                    <div class="button-container">
+                        <button onclick="pasteLink('youtube')">Colar Link</button>
+                        <button onclick="downloadVideo('youtube')" disabled>Baixar Vídeo</button>
+                    </div>
+                </div>
+                <div class="thumbnail" id="youtube-thumbnail"></div>
+                <div class="video-title">Último vídeo do YouTube</div>
+            </div>
+            <!-- Content for Facebook -->
+            <div id="facebook-content" class="tab-content">
+                <div class="input-container">
+                    <input type="text" placeholder="Cole o link aqui" id="facebook-input" onclick="selectInputText(this)">
+                    <div class="button-container">
+                        <button onclick="pasteLink('facebook')">Colar Link</button>
+                        <button onclick="downloadVideo('facebook')" disabled>Baixar Vídeo</button>
+                    </div>
+                </div>
+                <div class="thumbnail" id="facebook-thumbnail"></div>
+                <div class="video-title">Último vídeo do Facebook</div>
+            </div>
+            <!-- Content for Instagram -->
+            <div id="instagram-content" class="tab-content">
+                <div class="input-container">
+                    <input type="text" placeholder="Cole o link aqui" id="instagram-input" onclick="selectInputText(this)">
+                    <div class="button-container">
+                        <button onclick="pasteLink('instagram')">Colar Link</button>
+                        <button onclick="downloadVideo('instagram')" disabled>Baixar Vídeo</button>
+                    </div>
+                </div>
+                <div class="thumbnail" id="instagram-thumbnail"></div>
+                <div class="video-title">Último vídeo do Instagram</div>
+            </div>
+            <!-- Content for TikTok -->
+            <div id="tiktok-content" class="tab-content">
+                <div class="input-container">
+                    <input type="text" placeholder="Cole o link aqui" id="tiktok-input" onclick="selectInputText(this)">
+                    <div class="button-container">
+                        <button onclick="pasteLink('tiktok')">Colar Link</button>
+                        <button onclick="downloadVideo('tiktok')" disabled>Baixar Vídeo</button>
+                    </div>
+                </div>
+                <div class="thumbnail" id="tiktok-thumbnail"></div>
+                <div class="video-title">Último vídeo do TikTok</div>
+            </div>
+            <!-- Content for Kwai -->
+            <div id="kwai-content" class="tab-content">
+                <div class="input-container">
+                    <input type="text" placeholder="Cole o link aqui" id="kwai-input" onclick="selectInputText(this)">
+                    <div class="button-container">
+                        <button onclick="pasteLink('kwai')">Colar Link</button>
+                        <button onclick="downloadVideo('kwai')" disabled>Baixar Vídeo</button>
+                    </div>
+                </div>
+                <div class="thumbnail" id="kwai-thumbnail"></div>
+                <div class="video-title">Último vídeo do Kwai</div>
+            </div>
+            <!-- Content for Twitter -->
+            <div id="twitter-content" class="tab-content">
+                <div class="input-container">
+                    <input type="text" placeholder="Cole o link aqui" id="twitter-input" onclick="selectInputText(this)">
+                    <div class="button-container">
+                        <button onclick="pasteLink('twitter')">Colar Link</button>
+                        <button onclick="downloadVideo('twitter')" disabled>Baixar Vídeo</button>
+                    </div>
+                </div>
+                <div class="thumbnail" id="twitter-thumbnail"></div>
+                <div class="video-title">Último vídeo do Twitter</div>
+            </div>
+        </section>
+        <div class="advertisement">
+            <!-- Advertisement content goes here -->
+        </div>
+    </div>
+ <script src="script.js"></script>
+ <script src="script2.js"></script>
+</body>
+</html>
